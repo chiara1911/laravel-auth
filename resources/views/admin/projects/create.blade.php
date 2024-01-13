@@ -3,7 +3,10 @@
 @section('title', 'Create')
 
 @section('content')
-    <section class="container">
+    <section class="container-fluid mt-5">
+        <div class="row">
+            @include('admin.partials.sidebar')
+            <div class="col-10">
         <form action="{{ route('admin.projects.store') }}" enctype="multipart/form-data" method="POST">
             @csrf
             <div class="mb-3">
@@ -14,7 +17,6 @@
                     name="title">
                     @error('title')
                     <div class="invalid-feedback">{{$message}}</div>
-
                     @enderror
             </div>
             <div class="mb-3">
@@ -24,7 +26,6 @@
               </textarea>
               @error('description')
               <div class="invalid-feedback">{{$message}}</div>
-
               @enderror
             </div>
             <div class="mb-3 ">
@@ -33,11 +34,12 @@
                     name="link">
                     @error('link')
                     <div class="invalid-feedback">{{$message}}</div>
-
                     @enderror
             </div>
             <button type="submit" class="btn btn-primary">Invia</button>
             <button type="reset" class="btn btn-danger">Reset</button>
         </form>
+    </div>
+    </div>
     </section>
 @endsection

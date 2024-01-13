@@ -3,7 +3,10 @@
 @section('title', $project['title'])
 
 @section('content')
-    <section class="container">
+    <section class="container-fluid mt-5">
+        <div class="row">
+            @include('admin.partials.sidebar')
+            <div class="col-10">
         <form action="{{ route('admin.projects.store') }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
@@ -40,5 +43,7 @@
             <button type="submit" class="btn btn-primary">Invia</button>
             <button type="reset" class="btn btn-danger">Reset</button>
         </form>
+    </div>
+    </div>
     </section>
 @endsection

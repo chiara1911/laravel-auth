@@ -3,10 +3,15 @@
 @section('title', $project['title'])
 
 @section('content')
-    <section class="container">
-        <h1>Project List</h1>
-                    <p class="text-uppercase">titolo progetto : {{ $project->title }}</p>
-                    <p>Descrizione progetto: {{ $project->description }}</p>
-                    <a href="{{ $project->link }}">link progetto su github</a>
+    <section class="container-fluid mt-5">
+        <div class="row">
+            @include('admin.partials.sidebar')
+            <div class="col-10">
+                <h1>Project List</h1>
+                <p class="text-uppercase">titolo progetto : {{ $project->title }}</p>
+                <p>Descrizione progetto: {{ $project->description }}</p>
+                <a href="{{ $project->link }}">link progetto su github</a>
+            </div>
+        </div>
     </section>
 @endsection

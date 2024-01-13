@@ -1,19 +1,10 @@
 @extends('layouts.app')
 @section('content')
-    <section class="container">
+    <section class="container-fluid mt-5">
 
         <h1>Lista dei Progetti</h1>
         <div class="row">
-            <div class="col-2 bg-primary " id="sidebar">
-                <nav class="d-flex flex-column m-3 ">
-                    <!-- first-top-bar -->
-
-                            <h2 class="text-light mb-5">Pagine</h2>
-                             <p><a href="{{ route('admin.projects.create') }}" class="text-light text-decoration-none my-3">Crea Nuovo Progetto</a></p>
-                             <p><a href="{{route('admin.projects.index')}}" class=" my-3 text-light">  Pagina principale</a></p>
-
-                </nav>
-            </div>
+            @include('admin.partials.sidebar')
             <!-- navbar blu -->
             <div class="col-10" >
             <div class="bg-primary ">
@@ -44,14 +35,14 @@
                                     </a>
                                 <td>
                                     <a href="{{ route('admin.projects.edit', $project->id) }}"
-                                        class="btn btn-success">Modifica</a>
+                                        class="btn btn-success"><i class="fa-solid fa-pencil"></i></a>
                                 </td>
                                 <td>
                                     <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="cancel-button btn btn-danger"
-                                            data-item-title="{{ $project->title }}"> Cancella </button>
+                                            data-item-title="{{ $project->title }}"><i class="fa-solid fa-trash-can"></i></button>
                                     </form>
                                 </td>
                                 </td>
