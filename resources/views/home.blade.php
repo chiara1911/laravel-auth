@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <section class="container">
-        <h1>Section title</h1>
-        <p>section content</p>
+        <h1>Titolo Portfolio</h1>
+        <p>Contenuto web</p>
     </section>
 @endsection
