@@ -46,6 +46,11 @@ class ProjectController extends Controller
         $userId = Auth::id();
         //aggiungo l'id utente in form data
         $formData['user_id']= $userId;
+        if ($request->hasFile('image')) {
+            $img_path = Storage::put('image', $request->image);
+            $formData['image'] = $img_path;
+        }
+        // dd($img_path);
         $project = Project::create($formData);
         return to_route('admin.projects.index', $project->id);
 

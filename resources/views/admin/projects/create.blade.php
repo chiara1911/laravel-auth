@@ -36,6 +36,14 @@
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
             </div>
+            <div class="mb-3 ">
+                <label for="image" class="form-label">Inserisci l'immagine del progetto</label>
+                <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
+                    name="image">
+                    @error('image')
+                    <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
+            </div>
             <button type="submit" class="btn btn-primary">Invia</button>
             <button type="reset" class="btn btn-danger">Reset</button>
         </form>
