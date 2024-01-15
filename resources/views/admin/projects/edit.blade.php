@@ -43,7 +43,7 @@
             <div class="mb-3 ">
                 <label for="image" class="form-label">Inserisci l'immagine del progetto</label>
                 <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
-                    name="image">
+                    name="image" value="{{old('image', $project->image)}}">
                     @error('image')
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
