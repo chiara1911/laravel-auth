@@ -31,8 +31,8 @@
                                                 {{ $project->title }}</p>
                                         </a>
                                     <td>
-                                        <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-success"><i
-                                                class="fa-solid fa-pencil"></i></a>
+                                        <a href="{{ route('admin.projects.edit', $project->slug) }}"
+                                            class="btn btn-success"><i class="fa-solid fa-pencil"></i></a>
                                     </td>
                                     <td>
                                         <form action="{{ route('admin.projects.destroy', $project->slug) }}" method="POST">

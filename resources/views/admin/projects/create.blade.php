@@ -7,7 +7,7 @@
         <div class="row">
             @include('admin.partials.sidebar')
             <div class="col-10">
-        <form action="{{ route('admin.projects.store') }}" enctype="multipart/form-data" method="POST">
+        <form action="{{ route('admin.projects.store') }}" enctype="multipart/form-data" method="GET">
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Aggiungi titolo</label>
@@ -36,14 +36,21 @@
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
             </div>
+            <div class="d-flex">
+
             <div class="mb-3 ">
                 <label for="image" class="form-label">Inserisci l'immagine del progetto</label>
+                <img id="uploadPreview" width="100" src="https://via.placeholder.com/300x200">
                 <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
-                    name="image" v>
+                    name="image" >
                     @error('image')
                     <div class="invalid-feedback">{{$message}}</div>
                     @enderror
             </div>
+
+
+
+        </div>
             <button type="submit" class="btn btn-primary">Invia</button>
             <button type="reset" class="btn btn-danger">Reset</button>
         </form>
