@@ -7,9 +7,9 @@
         <div class="row">
             @include('admin.partials.sidebar')
             <div class="col-10">
-                <form action="{{ route('admin.projects.store', $project->id) }}" enctype="multipart/form-data" method="POST">
+                <form action="{{ route('admin.projects.update', $project->slug) }}" enctype="multipart/form-data" method="POST">
                     @csrf
-
+                    @method('PUT')
                     <div class="mb-3">
                         <label for="title" class="form-label">Aggiungi titolo</label>
                         <input type="text" class="form-control @error('title') is-invalid @enderror

@@ -85,23 +85,24 @@ class ProjectController extends Controller
     {
         //
         $formData = $request->validated();
-        if ($project->title !== $formData['title']) {
-            //CREATE SLUG
-            $slug = Project::slug($formData['title']);
-            $formData['slug'] = $slug;
-        }
+        // if ($project->title !== $formData['title']) {
+        //     //CREATE SLUG
+        //     $slug = Project::slug($formData['title']);
+        //     $formData['slug'] = $slug;
+        // }
         //add slug to formData
 
         //aggiungiamo l'id dell'utente proprietario del post
         $formData['user_id'] = $project->user_id;
-        if ($request->hasFile('image')) {
-            if ($project->image) {
-                Storage::delete($project->image);
-            }
+        // if ($request->hasFile('image')) {
+        //     if ($project->image) {
+        //         Storage::delete($project->image);
+        //     }
 
-            $path = Storage::putFileAs('images', $formData['image']);
-            $formData['image'] = $path;
-        }
+        //     $path = Storage::putFileAs('images', $formData['image']);
+        //     $formData['image'] = $path;
+        // }
+
         $project->update($formData);
         return to_route('admin.projects.show', $project->slug);
     }
