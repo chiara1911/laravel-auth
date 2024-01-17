@@ -8,16 +8,24 @@ $fa-font-path: "../fonts/webfonts" !default;
 @import "~@fortawesome/fontawesome-free/scss/brands";
 
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
-h1 {
-    color: $text-color;
-}
+
+body{
+    font-family: 'Exo', sans-serif;
+    h1 {
+        color: $text-color;
+    }
 
 #sidebar {
     border-radius: 10px;
     height: 100vh;
+    background: linear-gradient(90deg, hsla(270, 94%, 25%, 1) 0%, hsla(158, 94%, 49%, 1) 100%);
 }
 
+.nav-top{
+    background: linear-gradient(90deg, hsla(270, 94%, 25%, 1) 0%, hsla(158, 94%, 49%, 1) 100%);
+}
 .img-card{
     width: 200px;
     height: 200px;
@@ -27,5 +35,9 @@ img{
     object-fit: contain;
     width: 100%;
 }
+}
+
+
+
 
 

@@ -9,6 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $guarded =[];
     // funzione uno a molti
     public function projects(){
         return $this->hasMany(Project::class);
