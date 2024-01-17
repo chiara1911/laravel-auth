@@ -5,7 +5,7 @@
         <div class="row">
             @include('admin.partials.sidebar')
             <!-- navbar blu -->
-            <div class="col-10">
+            <div class="col-6">
                 <!--section categories  -->
                 <div class="card">
                     <div class="card-header ">
@@ -47,7 +47,26 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="card mt-3 h-50">
+                    <div class="card-header">
+                        visualizza tutte le tecnologie utilizzate
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
 
+                <!--section categories  -->
+                <div class="card h-50">
+                    <div class="card-header">
+                        visualizza tutte le tecnologie utilizzate
+                    </div>
+                </div>
+                <div class="card mt-3 h-50">
+                    <div class="card-header">
+                        visualizza tutte le tecnologie utilizzate
+                    </div>
+                </div>
+            </div>
             </div>
     </section>
     @include('admin.partials.modal_delete')

@@ -13,19 +13,23 @@ $fa-font-path: "../fonts/webfonts" !default;
 
 body{
     font-family: 'Exo', sans-serif;
-    h1 {
-        color: $text-color;
-    }
+    // background: linear-gradient(90deg, hsla(270, 94%, 25%, 1) 0%, hsla(158, 94%, 49%, 1) 100%);
+    background-color:#171734;
+    color: $text-color;
+    // h1 {
+    //     color: $text-color;
+    // }
 
 #sidebar {
-    border-radius: 10px;
+   border: solid 1px white;
     height: 100vh;
-    background: linear-gradient(90deg, hsla(270, 94%, 25%, 1) 0%, hsla(158, 94%, 49%, 1) 100%);
+    // background: linear-gradient(90deg, rgb(156, 104, 88) 0%, rgb(230, 121, 49) 100%);
+
 }
 
-.nav-top{
-    background: linear-gradient(90deg, hsla(270, 94%, 25%, 1) 0%, hsla(158, 94%, 49%, 1) 100%);
-}
+// .nav-top{
+//     background: linear-gradient(90deg, rgb(144, 127, 161) 0%, rgb(100, 126, 116) 100%);
+// }
 .img-card{
     width: 200px;
     height: 200px;
