@@ -6,8 +6,10 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Technology;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -30,7 +32,10 @@ class ProjectController extends Controller
     public function create()
     {
         //
-        return view('admin.projects.create');
+        $categories = Category::all();
+        $technologies = Technology::all();
+
+        return view('admin.projects.create', compact('categories', 'technologies'));
     }
 
     /**
@@ -45,16 +50,21 @@ class ProjectController extends Controller
         // aggiungo slug al form data
         $formData['slug'] = $slug;
         //prendo l'ID dell'utente che si è loggato
-         $userId = Auth::id();
+        $userId = Auth::id();
         //aggiungo l'id utente in form data
         $formData['user_id'] = $userId;
         if ($request->hasFile('image')) {
-            $img_path = Storage::put('image', $request->image);
+            $img_path = Storage::put('images', $formData['image']);
             $formData['image'] = $img_path;
         }
         // dd($img_path);
         $project = Project::create($formData);
-        return to_route('admin.projects.index', $project->id);
+        // dd($formData);
+        if ($request->has('technologies')) {
+            $project->technologies()->attach($request->technologies);
+        }
+
+        return to_route('admin.projects.show', $project->slug);
     }
 
 
@@ -75,7 +85,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         //
-        return view('admin.projects.edit', compact('project'));
+        $categories = Category::all();
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'categories', 'technologies'));
     }
 
     /**
@@ -85,25 +97,32 @@ class ProjectController extends Controller
     {
         //
         $formData = $request->validated();
-        // if ($project->title !== $formData['title']) {
-        //     //CREATE SLUG
-        //     $slug = Project::slug($formData['title']);
-        //     $formData['slug'] = $slug;
-        // }
+        $formData['slug'] = $project->slug;
+        if ($project->title !== $formData['title']) {
+            //CREATE SLUG
+            $slug = Project::getSlug($formData['title']);
+            $formData['slug'] = $slug;
+        }
         //add slug to formData
 
         //aggiungiamo l'id dell'utente proprietario del post
         $formData['user_id'] = $project->user_id;
-        // if ($request->hasFile('image')) {
-        //     if ($project->image) {
-        //         Storage::delete($project->image);
-        //     }
+        if ($request->hasFile('image')) {
+            if ($project->image) {
+                Storage::delete($project->image);
+            }
 
-        //     $path = Storage::putFileAs('images', $formData['image']);
-        //     $formData['image'] = $path;
-        // }
-
+            $path = Storage::put('images', $formData['image']);
+            $formData['image'] = $path;
+        }
         $project->update($formData);
+
+        if ($request->has('technologies')) {
+
+            $project->technologies()->sync($request->technologies);
+        } else {
+            $project->technologies()->detach();
+        }
         return to_route('admin.projects.show', $project->slug);
     }
 
@@ -112,8 +131,11 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        // $project->technologies()->sync([]);
         if ($project->image) {
             Storage::delete($project->image);
+        } else {
+            $project->technologies()->detach();
         }
         $project->delete();
         return to_route('admin.projects.index')->with('message', "il $project->title è stato eliminato");

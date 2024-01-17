@@ -10,8 +10,8 @@ class Project extends Model
 {
     use HasFactory;
 
-protected $fillable =['title', 'description', 'link', 'slug', 'user_id','image'];
-public static function getSlug($title)
+    protected $fillable = ['title', 'description', 'link', 'slug', 'user_id', 'image', 'category_id'];
+    public static function getSlug($title)
     {
         $slug = Str::of($title)->slug("-");
         $count = 1;
@@ -24,5 +24,18 @@ public static function getSlug($title)
         }
 
         return $slug;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    public function technologies()
+    {
+        return $this->belongsToMany(Technology::class);
     }
 }
